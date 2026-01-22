@@ -70,21 +70,32 @@ N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/your-id
 
 ## Deployment
 
-### Backend
-Deploy to any Python hosting (Render, Railway, Fly.io):
+### Docker (Recommended)
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop
+docker-compose down
+```
+
+Access the app at http://localhost (frontend) or http://localhost:8000 (API docs).
+
+### Manual Deployment
+
+**Backend** - Deploy to any Python hosting (Render, Railway, Fly.io):
 ```bash
 cd backend
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-### Frontend
-Build for production:
+**Frontend** - Build for production:
 ```bash
 cd frontend
 npm run build
 ```
 Deploy the `dist/` folder to any static hosting (Vercel, Netlify, Cloudflare Pages).
-
-## License
-
-MIT

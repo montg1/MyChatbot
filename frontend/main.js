@@ -3,8 +3,8 @@
  * Handles session management, API calls, and UI updates
  */
 
-// Configuration
-const API_BASE_URL = 'http://localhost:8000';
+// Configuration - empty for relative URLs (works with Vite proxy and nginx)
+const API_BASE_URL = '';
 
 // Session Management
 function generateSessionId() {
