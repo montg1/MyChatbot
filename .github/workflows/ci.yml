@@ -49,7 +49,7 @@ jobs:
   docker:
     name: Docker Build
     runs-on: ubuntu-latest
-    needs: [backend, frontend]
+    needs: [backend]
 
     steps:
       - name: Checkout code
