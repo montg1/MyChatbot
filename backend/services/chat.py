@@ -16,7 +16,7 @@ NAME: Maverix
 
 SUMMARY:
 Software Engineer at NECTEC (National Electronics and Computer Technology Center),
-specializing in AI/ML services and backend development. Core member of the 
+specializing in AI/ML services and backend development. Core member of the
 Pathumma LLM Audio Team, responsible for building FastAPI services that power
 Thailand's first multimodal audio-language AI model.
 
@@ -33,7 +33,7 @@ EXPERIENCE:
   CI/CD pipeline setup and maintenance
 
 PROJECTS:
-- Pathumma LLM Audio 1.0.0: FastAPI service developer for Thailand's multimodal 
+- Pathumma LLM Audio 1.0.0: FastAPI service developer for Thailand's multimodal
   audio-language model (8B parameters). Powers speech-to-text, audio understanding,
   and music analysis capabilities using OpenThaiLLM and Whisper-based architecture.
   Published on HuggingFace: nectec/Pathumma-llm-audio-1.0.0
@@ -66,12 +66,12 @@ class ChatService:
     ) -> str:
         """
         Get AI response from n8n webhook.
-        
+
         Args:
             message: User's question
             session_id: Session ID for context
             history: Previous chat messages
-            
+
         Returns:
             AI-generated response string
         """
@@ -94,28 +94,31 @@ class ChatService:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
                 response = await client.post(self.webhook_url, json=payload)
                 response.raise_for_status()
-                
+
                 data = response.json()
-                
+
                 # Extract reply from various possible response formats
                 reply = (
-                    data.get("reply") or 
-                    data.get("text") or 
+                    data.get("reply") or
+                    data.get("text") or
                     data.get("output") or
                     str(data)
                 )
-                
+
                 logger.info(f"Received response for session {session_id}")
                 return reply
 
         except httpx.TimeoutException:
             logger.error(f"Timeout calling n8n webhook for session {session_id}")
             return "I'm sorry, the request timed out. Please try again."
-        
+
         except httpx.HTTPStatusError as e:
             logger.error(f"HTTP error from n8n: {e.response.status_code}")
-            return f"I'm sorry, there was an error processing your request. (HTTP {e.response.status_code})"
-        
+            return (
+                f"I'm sorry, there was an error processing your request. "
+                f"(HTTP {e.response.status_code})"
+            )
+
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             return f"I'm sorry, an unexpected error occurred: {str(e)}"

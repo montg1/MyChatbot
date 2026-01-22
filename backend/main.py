@@ -53,7 +53,7 @@ async def health_check():
 async def chat(request: ChatRequest):
     """
     Process a chat message and return AI response.
-    
+
     - **message**: The user's question about the resume
     - **sessionId**: Unique session identifier for conversation context
     - **history**: Optional list of previous messages for context
