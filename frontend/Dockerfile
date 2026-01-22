@@ -1,25 +1,24 @@
-# Frontend Dockerfile - Multi-stage build
+# Build Stage
 FROM node:20-alpine AS builder
-
 WORKDIR /app
 
-# Install dependencies
+# Install build dependencies (if needed)
+RUN apk add --no-cache --virtual .build-deps build-base python3
+
 COPY package*.json ./
 RUN npm ci
-
-# Copy source and build
 COPY . .
+
+# Build the app
 RUN npm run build
 
-# Production stage with nginx
+# Remove build dependencies to reduce image size
+RUN apk del .build-deps
+
+# Production Stage
 FROM nginx:alpine
-
-# Copy built files
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
+RUN chown -R nginx:nginx /usr/share/nginx/html
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
