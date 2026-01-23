@@ -3,8 +3,8 @@
  * Handles session management, API calls, and UI updates
  */
 
-// Configuration - empty for relative URLs (works with Vite proxy and nginx)
-const API_BASE_URL = '';
+// Configuration - Live Backend URL
+const API_BASE_URL = 'https://mychatbot-12j3.onrender.com';
 
 // Session Management
 function generateSessionId() {
