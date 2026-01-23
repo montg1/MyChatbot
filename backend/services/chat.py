@@ -41,6 +41,9 @@ PROJECTS:
 - Resume Chatbot: AI-powered chatbot for interactive resume exploration
   using FastAPI backend and modern JavaScript frontend
 
+PUBLICATIONS:
+- "Comprehensive Benchmarking and Analysis of Open Pretrained Thai Speech Recognition Models" (IEEE, 2024)
+
 SKILLS:
 - Backend: FastAPI, Python, Async Programming, REST APIs, Uvicorn
 - AI/ML: PyTorch, Transformers, HuggingFace, Model Serving, LLM APIs
