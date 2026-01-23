@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 # Resume content - can be moved to a database or file
 RESUME_TEXT = """
-NAME: Maverix
+NAME: Oatsada
 
 SUMMARY:
 Software Engineer at NECTEC (National Electronics and Computer Technology Center),
