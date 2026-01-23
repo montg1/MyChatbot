@@ -1,0 +1,21 @@
+services:
+  # Python Backend
+  - type: web
+    name: chatbot-backend
+    runtime: python
+    region: singapore
+    plan: free
+    repo: https://github.com/montg1/MyChatbot
+    branch: main
+    rootDir: backend
+    
+    # Build & Run settings
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    
+    # Environment Variables
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: N8N_WEBHOOK_URL
+        sync: false  # You must set this manually in Render Dashboard
