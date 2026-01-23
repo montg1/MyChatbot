@@ -3,8 +3,8 @@
  * Handles session management, API calls, and UI updates
  */
 
-// Configuration - Live Backend URL
-const API_BASE_URL = 'https://mychatbot-12j3.onrender.com';
+// Configuration - Environment Variable (VITE_API_BASE_URL)
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 // Session Management
 function generateSessionId() {
